@@ -84,4 +84,13 @@ npm run test:e2e
 
 畫面為教學示意，捲動時間不等於實際沖煮時間。器具是內建圖片生成工具產生的透明插畫，液體與指示線為 SVG；原圖、清理版與 WebP 存於 `public/images/brew/`。執行 `node scripts/prepare-brew-images.mjs` 可重建 WebP。
 
-可使用其他已啟動的預覽站執行測試：`PLAYWRIGHT_BASE_URL=http://127.0.0.1:3147 npm run test:e2e`。
+可使用其他已啟動的預覽站執行測試：`PLAYWRIGHT_BASE_URL=http://localhost:3148 npm run test:e2e`。
+
+
+## 風味小旅行與沖煮準備
+
+- `/explore`：四個產區明信片、處理法結構示意、六組風味品飲提示。
+- 從結果頁的「探索我的風味方向」進入，使用 `type` 參數選擇起點；`origin`、`method`、`flavor` 參數保留互動選擇，重整或分享同一網址可還原。未知參數安全回到預設內容。
+- 內容整理於 `lib/explore.ts`。產區與處理法章節獨立探索，不將組合換算為未經驗證的風味分數；資料來源附於頁面。
+- `/brew` 新增八項器材清單與四個準備步驟，包含潤紙、接底水、倒水及磨豆入杯。清單只保留在本次頁面，不阻擋沖煮入口。
+- 使用減少動態設定時，準備區仍可切換，並直接銜接靜態沖煮筆記。

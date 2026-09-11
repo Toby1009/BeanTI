@@ -54,12 +54,12 @@ export default function BrewStory() {
         <div className="brew-bottom-progress" aria-hidden="true"><span style={{transform:`scaleX(${progress})`}}/></div>
       </div>
     </section>
-    <section className="brew-static wrap" aria-label="靜態沖煮步驟"><p className="brew-static-intro">依照你的減少動態設定，將沖煮故事整理成五張小筆記。</p>{brewSteps.map((s,i)=><article key={s.label}><BrewScene progress={i===4?1:(i+.5)/5} annotated={false}/><div><span className="eyebrow">0{i+1} / {s.label}</span><h2>{s.title.replace('\n','')}</h2><p>{s.description}</p><small>{s.detail}</small></div></article>)}</section>
+    <section id="brew-static" className="brew-static wrap" aria-label="靜態沖煮步驟"><p className="brew-static-intro">依照你的減少動態設定，將沖煮故事整理成五張小筆記。</p>{brewSteps.map((s,i)=><article key={s.label}><BrewScene progress={i===4?1:(i+.5)/5} annotated={false}/><div><span className="eyebrow">0{i+1} / {s.label}</span><h2>{s.title.replace('\n','')}</h2><p>{s.description}</p><small>{s.detail}</small></div></article>)}</section>
     <section id="brew-finish" tabIndex={-1} className="brew-finish wrap">
       <Sprout size={30} strokeWidth={1.3}/><span className="eyebrow">FROM A LITTLE MOMENT TO YOUR EVERYDAY</span><h2>這一杯，是你的了。</h2><p>學會看一杯咖啡怎麼誕生，<br/>再找找，什麼味道會讓你喜歡。</p>
       <Link className="button primary" href="/quiz">找到我的咖啡人格 <ArrowRight size={17}/></Link>
       {!reduced&&<button className="text-link brew-replay" onClick={()=>seek(0)}><RotateCcw size={14}/> 再沖一杯</button>}
-      <div className="brew-club-note"><Coffee size={20}/><div><strong>把喜歡，慢慢喝明白。</strong><p>獻給每個好奇咖啡、想親手試試的你。</p></div></div>
+      <Link className="text-link brew-explore-link" href="/explore">接著探索產區與風味 <ArrowRight size={17}/></Link><div className="brew-club-note"><Coffee size={20}/><div><strong>把喜歡，慢慢喝明白。</strong><p>獻給每個好奇咖啡、想親手試試的你。</p></div></div>
       <p className="brew-disclaimer">這是一段沖煮原理的簡化示意，不是特定配方或計時器。實際水量、研磨與時間，會依豆子、器具和你喜歡的味道調整。</p>
     </section>
   </>;

@@ -114,3 +114,41 @@
  .brew-static article .brew-scene { height:280px; }
  .brew-static h2 { font-size:25px; }
 }
+.brew-prepare-link { display:inline-flex; align-items:center; gap:10px; padding:14px 20px; margin-top:24px; color:var(--green); font-size:13px; border:1px solid var(--line); border-radius:30px; }
+.brew-story-entry { display:flex; width:fit-content; margin:30px auto; }
+.brew-preparation { padding-top:36px; padding-bottom:24px; scroll-margin-top:24px; }
+.prep-heading { text-align:center; margin-bottom:28px; }.prep-heading h2 { font-size:34px; margin:12px 0; }.prep-heading p { font-size:14px; color:var(--muted); }
+.equipment-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.equipment-grid button { position:relative; display:flex; flex-direction:column; align-items:flex-start; text-align:left; padding:22px; gap:12px; border:1px solid var(--line); border-radius:12px; background:var(--white); color:var(--ink); }
+.equipment-grid button[aria-pressed=true] { border-color:var(--green); background:var(--sage); }.equipment-grid button>svg { color:var(--green); }
+.equipment-grid strong { font-size:13px; font-weight:500; }.equipment-grid button>span:not(.equipment-check) { font-size:12px; color:var(--muted); line-height:1.8; }
+.equipment-check { position:absolute; top:20px; right:20px; width:20px; height:20px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; color:var(--green); }
+.prep-count { font-size:12px; color:var(--green); margin:16px 0 28px; text-align:right; }
+.prep-notebook { border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
+.prep-notebook nav { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--line); }
+.prep-notebook nav button { background:var(--white); color:var(--muted); padding:16px 10px; min-height:56px; font-size:13px; }
+.prep-notebook nav button[aria-pressed=true] { background:var(--sage); color:var(--green); box-shadow:inset 0 -2px var(--green); }
+.prep-notebook nav button span { font:italic 14px Georgia,serif; margin-right:10px; }
+.prep-panel { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:24px; padding:32px; }
+.prep-drawing { width:100%; height:auto; }.prep-panel h3 { font:700 25px/1.6 var(--serif); margin:12px 0; }
+.prep-panel p { font-size:14px; color:var(--muted); line-height:2; }.prep-panel small { display:block; font-size:12px; color:var(--green); border-top:1px solid var(--line); padding-top:16px; margin-top:20px; }
+.prep-next { display:flex; justify-content:flex-end; padding:0 32px 24px; min-height:68px; }.prep-source { margin-top:16px; font-size:12px; }
+.brew-explore-link { display:flex; width:fit-content; margin:20px auto; }
+@media(prefers-reduced-motion:no-preference) { .prep-drawing g { transition:transform 250ms ease-out,opacity 150ms ease-out; } }
+@media(max-width:760px) {
+ .equipment-grid { grid-template-columns:1fr 1fr; }.equipment-grid button { padding:18px; }.equipment-check { top:16px; right:16px; }
+ .prep-panel { grid-template-columns:1fr; padding:24px; gap:12px; }.prep-drawing { max-height:240px; }
+ .prep-notebook nav { grid-template-columns:1fr 1fr; }.prep-notebook nav button { padding:12px 8px; }
+ .prep-next { padding:0 24px 24px; }.prep-heading h2 { font-size:29px; }
+}
+/* A short landscape viewport must keep navigation reachable. */
+@media(max-height:650px) {
+ .brew-sticky { min-height:0; }.brew-stage { display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:0 20px; }
+ .brew-art-panel { min-height:0; height:100%; }.brew-scene { max-height:calc(100svh - 150px); }
+ .brew-step-copy { padding:10px 0; }.brew-step-copy h2 { font-size:22px; margin-top:6px; }.brew-description { font-size:11px; line-height:1.7; margin-top:8px; }
+ .brew-detail,.brew-scene-label,.brew-art-caption,.brew-handwritten,.brew-scroll-hint { display:none; }
+ .brew-controls { padding:5px 0; }.brew-controls nav { justify-content:space-between; width:100%; }.brew-controls button { min-height:44px; }
+}
+
+.prep-static-link { display:none; }
+@media(prefers-reduced-motion:reduce) { .prep-motion-link { display:none; }.prep-static-link { display:inline-flex; } }

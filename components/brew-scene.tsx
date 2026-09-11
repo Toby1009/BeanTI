@@ -16,6 +16,7 @@ export default function BrewScene({ progress, annotated = true }: { progress: nu
       <linearGradient id={`${id}-coffee`} x1="0" y1="0" x2="0" y2="1"><stop stopColor="#98613b"/><stop offset="1" stopColor="#563a27"/></linearGradient>
       <linearGradient id={`${id}-water`} x1="0" y1="0" x2="1" y2="0"><stop stopColor="#adbdac"/><stop offset=".5" stopColor="#d0d8c5"/><stop offset="1" stopColor="#8fa58c"/></linearGradient>
       <clipPath id={`${id}-carafe`}><path d="M236 411 Q242 431 232 453 L210 510 Q198 543 284 545 Q365 543 357 510 L338 453 Q328 431 338 411Z"/></clipPath>
+      <clipPath id={`${id}-paper`}><path d="M208 239 C208 222 250 214 292 214 C335 214 378 223 383 239 Q379 261 292 264 Q215 261 208 239Z"/></clipPath>
     </defs>
     <circle cx="308" cy="328" r="220" fill="var(--brew-halo)"/>
     <circle cx="308" cy="328" r="245" fill="none" stroke="var(--line)" strokeDasharray="2 10" opacity=".6"/>
@@ -29,13 +30,17 @@ export default function BrewScene({ progress, annotated = true }: { progress: nu
       </g>
       <image href="/images/brew/server.webp" x="177" y="391" width="245" height="170"/>
       <image href="/images/brew/dripper.webp" x="169" y="211" width="273" height="184"/>
-      <ellipse cx="292" cy="263" rx="47" ry={6 + f.bloom * 4} fill="#5c3d2b" opacity={f.bloom * .82}/>
+      {/* Use only the generated paper interior; the existing cutout retains its alpha silhouette. */}
+      <g data-testid="brew-filter-paper" clipPath={`url(#${id}-paper)`}>
+        <image href="/images/brew/dripper-paper.webp" x="169" y="211" width="273" height="184"/>
+      </g>
+      <ellipse cx="292" cy="255" rx="36" ry={4 + f.bloom * 3} fill="#5c3d2b" opacity={f.bloom * .82}/>
       <g opacity={f.bloom * (1 - f.finish)} fill="none" stroke="#b68b5c" strokeWidth="1.3">
-        {[[-21,-1,3],[3,-4,4],[22,1,2],[-7,3,2]].map(([x,y,r],i)=><circle key={i} cx={292+x} cy={258+y-Math.sin(progress*35+i)*2} r={r}/>) }
+        {[[-21,-1,3],[3,-4,4],[22,1,2],[-7,3,2]].map(([x,y,r],i)=><circle key={i} cx={292+x} cy={253+y-Math.sin(progress*35+i)*2} r={r}/>) }
       </g>
       <g opacity={f.pour}>
-        <path d={`M401 108 Q386 176 ${waterX} 258`} stroke={`url(#${id}-water)`} strokeWidth={3 + f.bloom * 1.5} fill="none" strokeLinecap="round"/>
-        <ellipse cx={waterX} cy="260" rx={12 + Math.sin(progress * 95) * 4} ry="3" fill="none" stroke="#c7ba8d" strokeWidth="1.4"/>
+        <path d={`M401 108 Q386 176 ${waterX} 253`} stroke={`url(#${id}-water)`} strokeWidth={3 + f.bloom * 1.5} fill="none" strokeLinecap="round"/>
+        <ellipse cx={waterX} cy="254" rx={12 + Math.sin(progress * 95) * 4} ry="3" fill="none" stroke="#c7ba8d" strokeWidth="1.4"/>
       </g>
       <g opacity={f.drip} fill="#805133">
         <path d="M288 377v20" stroke="#805133" strokeWidth="2" strokeLinecap="round"/>

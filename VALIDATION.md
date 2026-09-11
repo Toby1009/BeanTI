@@ -29,3 +29,15 @@ Not yet verified: deployment on a real Vercel domain, native share sheets in iOS
 - Replaced that process with the development preview and separated `.next-dev` from production `.next` in Next.js configuration.
 - Verified `/`, `/brew`, and `/types` at 375 and 1280 px on port 3000: styles loaded, no failed HTTP requests or JavaScript errors, no horizontal overflow.
 - Local preview fix verified before publishing; hosted deployment status is not asserted.
+
+## Preparation and flavor notebook (2026-09-12)
+
+- Final production build passed with 23 prerendered pages, including `/explore`; TypeScript passed.
+- All 11 unit tests passed. Full production browser suite passed (20 tests); after the final paper artwork and reduced-motion link adjustments, the 13 affected brewing/exploration tests passed again.
+- Exploration tested at 375, 768, 1440 px: selection updates, reload persistence, profile-specific defaults, invalid-query fallbacks, keyboard activation, homepage/result entry links, no horizontal overflow.
+- Preparation checks cover checklist toggling, rinse-water instructions, grinding, paper-layer visibility and connection to the brewing story. Reduced motion links directly to visible static steps.
+- Short 667 × 375 viewport keeps brewing navigation reachable. Existing rewind, skip and replay checks still pass.
+- Final production screenshots: `screenshots/explore-desktop.png`, `explore-mobile.png`, `brew-paper-desktop.png`, `brew-preparation-mobile.png`, `preparation-detail-mobile.png`. Screenshot capture reported no browser JavaScript errors or HTTP errors.
+- Initial development runs using `127.0.0.1` failed interactions across both old and new pages; the same pages worked on `localhost`. Production validation used `http://localhost:3148`; default test URL now matches the documented localhost preview.
+- Sources are linked beside origin notes, at the end of exploration, and below preparation. No measured flavor scores, geography-only guarantees, new accounts or tracking were introduced.
+- User approved publishing this update to GitHub after local inspection. Hosted deployment has not been verified.

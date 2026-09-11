@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-const base=process.env.PLAYWRIGHT_BASE_URL||'http://127.0.0.1:3000';
+const base=process.env.PLAYWRIGHT_BASE_URL||'http://localhost:3000';
 for(const width of [375,768,1440])test(`brew scrolling, rewind, skip and replay at ${width}px`,async({page})=>{
  await page.setViewportSize({width,height:812});
  await page.goto(`${base}/brew`,{waitUntil:'domcontentloaded'});
@@ -18,4 +18,4 @@ test('reduced motion presents every step without a scroll trap',async({page})=>{
  for(const article of await page.locator('.brew-static article').all())await expect(article).toBeVisible();
  await expect(page.locator('.brew-replay')).toBeHidden();
 });
-test('home links to brewing and brewing links to the quiz',async({page})=>{await page.goto(base);await page.locator('.brew-invite a').click();await expect(page).toHaveURL(/\/brew$/);await page.locator('#brew-finish a').click();await expect(page).toHaveURL(/\/quiz$/);});
+test('home links to brewing and brewing links to the quiz',async({page})=>{await page.goto(base);await page.locator('.brew-invite a').click();await expect(page).toHaveURL(/\/brew$/);await page.locator('#brew-finish a.button').click();await expect(page).toHaveURL(/\/quiz$/);});

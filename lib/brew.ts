@@ -1,5 +1,5 @@
 export const brewSteps = [
-  { label: '準備', english: 'A MOMENT TO BEGIN', title: '先留一點時間，\n給自己。', description: '器具就位，咖啡粉準備好了。接下來的幾個小動作，會把一杯水變成有香氣的日常。', detail: '濾杯裡，是研磨好的咖啡粉。', cue: '往下滑，開始沖煮', point: [306, 265] },
+  { label: '準備', english: 'A MOMENT TO BEGIN', title: '先留一點時間，\n給自己。', description: '潤紙水已倒掉，咖啡粉也鋪好了。接下來的幾個小動作，會把一杯水變成有香氣的日常。', detail: '濾紙貼著杯壁，咖啡粉留在紙內，底壺已清空。', cue: '往下滑，開始沖煮', point: [306, 235] },
   { label: '悶蒸', english: 'LET IT BLOOM', title: '先讓咖啡，\n輕輕醒來。', description: '先注入少量熱水，讓咖啡粉均勻濕潤。你可能看到粉床膨起、冒出小氣泡，那是氣體正在釋放。', detail: '留意粉床的變化，不必追求膨得越高越好。', cue: '少量注水 · 均勻濕潤', point: [306, 253] },
   { label: '注水', english: 'FIND YOUR RHYTHM', title: '把節奏，\n交給水。', description: '穩定地注水，讓水流經咖啡粉。水柱的落點與注水節奏，會改變粉層裡的水流與擾動。', detail: '看見水柱，也留意濾杯裡的水位。', cue: '穩定注水 · 留意水位', point: [320, 215] },
   { label: '滴落', english: 'GOOD THINGS TAKE A LITTLE TIME', title: '喜歡的味道，\n正在慢慢累積。', description: '停止注水，讓剩下的咖啡液滴入分享壺。香氣與風味隨著萃取進入杯中，液面也一點一點升高。', detail: '讓水自然流下；這段動畫不是沖煮計時器。', cue: '停止注水 · 等待滴落', point: [288, 409] },

@@ -10,3 +10,6 @@ console.log('Prepared four transparent equipment layers.');
 // A separate cleaned layer removes the atlas neighbour's overlapping handle.
 await sharp('public/images/brew/dripper-clean.png').trim({threshold:8}).resize(640,640,{fit:'inside'}).webp({quality:88}).toFile('public/images/brew/dripper.webp');
 for (const name of ['cup','kettle']) await sharp(`public/images/brew/${name === 'kettle' ? 'kettle-final' : 'cup-clean'}.png`).trim({threshold:8}).resize(640,640,{fit:'inside'}).webp({quality:88}).toFile(`public/images/brew/${name}.webp`);
+
+// The generated paper interior is clipped inside the existing transparent dripper in SVG.
+await sharp('public/images/brew/dripper-paper.png').resize(640).webp({quality:90}).toFile('public/images/brew/dripper-paper.webp');
