@@ -22,11 +22,14 @@
 .club-copy .eyebrow{font-size:9px;letter-spacing:1.5px}
 .club-copy h2{font-size:clamp(26px,3vw,36px);line-height:1.65;margin:12px 0 16px}
 .club-copy p{font-size:14px;line-height:1.9;color:var(--muted)}
-.club-instagram{margin-top:24px}
+.club-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:24px}
+.club-actions .button{gap:8px}
 .club-handle{display:block;margin-top:8px;font-size:12px;color:var(--muted)}
 .footer-community{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.footer-community-links{display:flex;flex-wrap:wrap;column-gap:20px}
 .footer-instagram{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:12px;color:var(--green);border-radius:8px}
 .footer-instagram:hover{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:760px){.club-actions,.footer-community-links{justify-content:center}}
 @media(max-width:760px){.club-section{padding-top:32px;padding-bottom:40px}.club-card{grid-template-columns:1fr;gap:28px;padding:32px 24px;text-align:center}.club-beans{max-width:280px}.club-art-note{font-size:14px}.club-copy h2{font-size:28px}.club-copy p{font-size:13px}.club-copy .eyebrow{font-size:8px;letter-spacing:1px}.footer-community{align-items:center}.footer{justify-content:center}.footer-note{width:100%;margin-left:0;justify-content:center}}
 .explore-invite h2 { font-size:clamp(28px,3vw,38px); margin:16px 0; }.explore-invite p { color:var(--muted); font-size:14px; line-height:2; }.explore-invite .button { margin-top:24px; }
 .result-explore { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:32px; margin:24px 0; background:var(--sage); border-radius:var(--radius); }

@@ -1,7 +1,24 @@
 import Image from 'next/image';
-import { ArrowUpRight, Instagram } from 'lucide-react';
+import { ArrowUpRight, Globe, Instagram } from 'lucide-react';
 
 const instagramUrl = 'https://www.instagram.com/ntust_coffee/';
+const websiteUrl = 'https://ntust-coffee-web.vercel.app/';
+
+export function CoffeeClubWebsiteLink({ compact = false }: { compact?: boolean }) {
+  return (
+    <a
+      href={websiteUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={compact ? 'footer-instagram' : 'button secondary club-website'}
+      aria-label="逛逛咖啡社網站（另開分頁）"
+    >
+      <Globe size={compact ? 17 : 19} aria-hidden="true" />
+      {compact ? '咖啡社網站' : '逛逛咖啡社網站'}
+      <ArrowUpRight size={15} aria-hidden="true" />
+    </a>
+  );
+}
 
 export function CoffeeClubLink({ compact = false }: { compact?: boolean }) {
   return (
@@ -35,7 +52,10 @@ export function CoffeeClubInvite() {
           <span className="eyebrow">A LITTLE COFFEE, A LITTLE COMPANY</span>
           <h2 id="club-heading">找到本命咖啡，<br />也找到一起喝的人。</h2>
           <p>台科奇點咖啡社，<br />陪你把風味探索帶到生活裡。</p>
-          <CoffeeClubLink />
+          <div className="club-actions">
+            <CoffeeClubLink />
+            <CoffeeClubWebsiteLink />
+          </div>
           <span className="club-handle">@ntust_coffee</span>
         </div>
       </div>
