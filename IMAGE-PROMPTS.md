@@ -1,5 +1,11 @@
 # BeanTI image assets
 
+## Brew story equipment
+
+Built-in image generation; model identity is not exposed. Original: `public/images/brew/equipment.png`. Website layers: `public/images/brew/{kettle,dripper,server,cup}.webp`. Prepared by `scripts/prepare-brew-images.mjs`.
+
+Use case: illustration-story. Asset: ONE square 2x2 sprite sheet of four separate isolated coffee equipment illustrations for a scroll-animated educational website BeanTI. Transparent background, no frames, no text, no shadows outside objects. Exactly four equal quadrants with 12% empty margins inside each cell. Upper-left: a sage green matte gooseneck kettle in side view, narrow gracefully curved spout pointing LEFT with tip at the left, handle on right, no pouring water. Upper-right: an ivory ceramic V60-style conical dripper with vertical fluted ridges, open oval top containing visible dry brown coffee grounds, thin rim and wide small support base, side view with slight view from above. Lower-left: an EMPTY transparent glass coffee serving carafe with a wide round body, narrow neck and pouring lip, clear thin espresso-brown glass outline, handle on right. The inside of the glass must be truly transparent, no solid opaque fill, no coffee. Lower-right: an ivory ceramic coffee cup and saucer seen at same slight top-down angle, filled with dark brown coffee, no steam. Style sophisticated warm editorial gouache and fine colored pencil, subtle paper texture within ceramic objects, delicate brown contour lines, realistic equipment proportions but cozy hand illustrated. Consistent side view with slight elevation, cohesive lighting from upper left. Palette warm ivory, muted sage green, espresso brown. No beans, no plants, no lettering, no backgrounds. All 4 objects fully visible and separated. 2048x2048.
+
 Generated with the built-in image generation tool. The tool does not expose model selection or model identity, so a specific backend model is not asserted.
 
 Originals: `public/images/hero.png`, `public/images/beans.png`.
@@ -7,6 +13,22 @@ Website assets: `public/images/hero.webp`, `public/images/bean-0.webp` through `
 The 16-character atlas is sliced and compressed by `node scripts/prepare-images.mjs`; no generated character is replaced by a code-drawn illustration.
 
 ## Hero prompt
+
+### Brew layer cleanup prompts
+
+Generated edits saved as `public/images/brew/dripper-clean.png`, `cup-clean.png`, and `kettle-clean.png`; the preprocessing script uses these final layers.
+
+Dripper: Edit this isolated dripper asset. Keep the ceramic coffee dripper and its handle, coffee grounds, paper texture, colors, lighting, viewing angle, and proportions exactly the same. Remove the stray sage-green kettle fragment and all stray pixels along the left edge; remove all tiny detached speckles around the ceramic object. Transparent background. The output contains ONLY the complete ivory ceramic dripper with grounds, centered with 8% padding, no other objects. No text. This is an animation layer.
+
+Cup: Clean up this coffee cup animation layer. Preserve the ivory cup and saucer, coffee, style, angle, color and texture. Remove the stray fragment of another glass object at the far LEFT edge and all detached stray speckles. Output ONLY the complete cup and saucer centered with 8% transparent margins. Fully transparent background, no words or additional objects.
+
+Kettle: Repair this sage green coffee kettle animation layer. The handle is cut off on the RIGHT side: extend the canvas and complete the curved handle so its lower end connects naturally to the kettle body. Keep the kettle body, left-facing gooseneck spout, wood knob, color, texture, illustration style and viewing angle unchanged. Output the COMPLETE isolated kettle with 8% transparent margin on every side. No cut edges, no speckles, truly transparent background, no other objects.
+
+### Original hero
+
+Final kettle replacement (`public/images/brew/kettle-final.png`, used to generate the website WebP; prior kettle cleanup variants are unused): Create ONE isolated hand-painted sage-green gooseneck coffee kettle with wooden lid knob and complete rounded handle on the right, spout facing LEFT. True transparent background PNG. Entire object fully visible with 10% padding. Side view, slightly elevated. Cozy fine colored pencil and gouache texture, subtle dark brown contour, sophisticated Japanese cafe editorial style, soft light from upper left. Palette sage green and warm brown. No ground shadow. No background, no checkerboard, no transparency grid, no patterns outside the kettle. Generate alpha channel transparency. This asset will float and tilt on a cream-colored webpage.
+
+Kettle alpha correction (`public/images/brew/kettle-alpha.png`, final source): Background extraction ONLY. The gray and white checkerboard in this image is a FAKE painted transparency pattern. REMOVE every checkerboard pixel and replace the background with REAL alpha-channel transparency, including the opening inside the handle and the gap beside the spout. Preserve the sage coffee kettle, its completed handle, gooseneck spout and wood knob exactly. Return PNG RGBA with alpha=0 outside the kettle silhouette, not a drawn transparency grid, no solid background, no shadows. Do not draw a checkerboard. Do not change object geometry.
 
 Use case: illustration-story. Create a polished wide hero illustration for BeanTI, a cute Taiwanese coffee personality website. A charming hand drawn colored-pencil and gouache picture book illustration on solid warm ivory #faf7ef background. Five adorable anthropomorphic brown coffee beans with tiny stick arms and feet, rosy cheeks and dark simple dot eyes, gathered around an oversized ivory ceramic coffee cup and saucer, in a miniature garden cafe. One bean with sage green beret holding a daisy, one with coral scarf holding a peach, one cozy sweater bean reading, one adventurous bean with backpack, one sitting on coffee bag. Include small flowers, coffee leaves, orange, a little moka pot, subtle four-point sparkles. Elegant limited palette of espresso brown, sage green, butter yellow, dusty pink and apricot. Soft pencil grain and slightly imperfect dark brown outlines. Airy horizontal composition centered with generous blank margins; no words, no lettering, no watermark. High-end independent cafe editorial illustration, sweet and whimsical but not childish. Landscape 1536x1024. Save output as project asset and return file path.
 

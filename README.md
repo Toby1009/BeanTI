@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-開啟 http://localhost:3000 。
+開啟 http://localhost:3000 。日常檢查請使用 `npm run dev`；開發快取寫入 `.next-dev`，正式建置寫入 `.next`，避免建置時覆蓋預覽的樣式與 JavaScript。若使用 `npm run start`，重新 build 後需重啟正式伺服器。
 
 ## 正式建置與驗證
 
@@ -46,6 +46,7 @@ npm run test:e2e
 ## 頁面與功能
 
 - `/`：品牌首頁、主插畫、測驗說明、代表人格。
+- `/brew`：奇點咖啡社沖煮故事，滑動控制準備、悶蒸、注水、滴落、品飲；支援步驟跳轉、倒帶、略過、重播與減少動態的靜態閱讀版。
 - `/quiz`：16 題測驗、原生單選與鍵盤操作、返回修改、本機保存、重測。
 - `/types`：16 型完整圖鑑與四軸說明。
 - `/result/BCLA` 等：可直接分享的人格頁、測驗偏好方向、選豆建議、可複製點單小抄、1080×1440 PNG 下載。
@@ -76,3 +77,11 @@ npm run test:e2e
 角色 WebP 已在建置前壓縮，直接送出靜態圖檔，避免逐張經過即時圖片轉換。首頁主圖保留 Next.js 響應式圖片最佳化。
 
 圖片為建置好的靜態資產，訪客使用網站不會呼叫圖片生成 API。字體採本機中文字體與 Georgia，沒有外部字型或分析追蹤請求。
+
+## 沖煮動畫
+
+`components/brew-story.tsx` 將原生捲動進度送入 `lib/brew.ts` 的純函式，`components/brew-scene.tsx` 以 SVG 圖層呈現器具、水流與液面。以 passive scroll listener + requestAnimationFrame 合併更新，沒有攔截滾輪、觸控或持續播放的計時器。
+
+畫面為教學示意，捲動時間不等於實際沖煮時間。器具是內建圖片生成工具產生的透明插畫，液體與指示線為 SVG；原圖、清理版與 WebP 存於 `public/images/brew/`。執行 `node scripts/prepare-brew-images.mjs` 可重建 WebP。
+
+可使用其他已啟動的預覽站執行測試：`PLAYWRIGHT_BASE_URL=http://127.0.0.1:3147 npm run test:e2e`。

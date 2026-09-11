@@ -13,3 +13,19 @@
 - npm dependency audit after sharp update: 0 known vulnerabilities.
 
 Not yet verified: deployment on a real Vercel domain, native share sheets in iOS/Android, Windows font rendering. Recommendation quality has not been validated against real tasting feedback.
+
+## Brew story update
+
+- Production build passed with 22 prerendered pages including `/brew`.
+- All 11 unit tests passed, including bounded liquid levels, reversible deterministic frames, and start/end states.
+- All 12 browser tests passed, including the existing quiz journey and the new brew page at 375, 768, and 1440 px.
+- Brew checks cover step navigation, rewind, skip, replay, no horizontal overflow, reduced-motion static content, homepage entry and quiz exit.
+- Desktop, mobile and completion screenshots are in `screenshots/brew-*.png`.
+- Validated locally and reviewed before the user authorized publishing to GitHub.
+
+## Local preview asset mismatch fix
+
+- Reproduced the stale server on port 3000 returning 404 for its CSS and webpack chunk, leaving the whole page unstyled.
+- Replaced that process with the development preview and separated `.next-dev` from production `.next` in Next.js configuration.
+- Verified `/`, `/brew`, and `/types` at 375 and 1280 px on port 3000: styles loaded, no failed HTTP requests or JavaScript errors, no horizontal overflow.
+- Local preview fix verified before publishing; hosted deployment status is not asserted.

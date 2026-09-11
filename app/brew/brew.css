@@ -1,0 +1,116 @@
+.brew-page { --brew-halo:#eeeedf; --brew-line:#9b9c81; --brew-gold:#ad8750; }
+.brew-intro { position:relative; text-align:center; padding-top:70px; padding-bottom:65px; }
+.brew-intro h1 { font-size:clamp(42px,5.5vw,74px); line-height:1.4; letter-spacing:3px; margin:24px 0; }
+.brew-intro h1 em { font-style:normal; color:var(--green); }
+.brew-intro>p { color:var(--muted); font-size:14px; line-height:2; }
+.brew-begin { display:inline-flex; align-items:center; gap:10px; margin-top:25px; padding:10px 18px; color:var(--green); font-size:12px; }
+.brew-begin>svg { border:1px solid var(--line); border-radius:50%; padding:9px; width:38px; height:38px; }
+.brew-intro-side { position:absolute; right:34px; top:50%; writing-mode:vertical-rl; font-size:9px; letter-spacing:3px; color:var(--muted); }
+.brew-scroll { height:520svh; position:relative; border-top:1px solid var(--line); }
+.brew-sticky { height:100svh; min-height:580px; position:sticky; top:0; overflow:hidden; display:flex; flex-direction:column; background:var(--paper); }
+.brew-topline { margin:0 5%; display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); }
+.brew-topline .text-link { font-size:11px; letter-spacing:.5px; }
+.brew-stage { display:grid; grid-template-columns:1.25fr 1fr; align-items:center; width:100%; max-width:1280px; margin:auto; padding:0 44px; flex:1; min-height:0; }
+.brew-art-panel { position:relative; min-width:0; align-self:stretch; display:flex; flex-direction:column; justify-content:center; }
+.brew-scene { display:block; width:100%; height:auto; max-height:calc(100svh - 180px); overflow:visible; }
+.brew-scene-label { position:absolute; top:25px; left:12px; font-size:8px; letter-spacing:2px; color:var(--muted); }
+.brew-art-caption { display:flex; align-items:center; justify-content:center; gap:12px; color:var(--muted); font-size:11px; letter-spacing:1px; margin-top:-14px; padding-bottom:18px; }
+.brew-caption-rule { width:22px; height:1px; background:var(--brew-line); }
+.brew-step-copy { padding:20px 0 25px 36px; max-width:435px; }
+.brew-step-kicker { display:flex; align-items:center; gap:17px; }
+.brew-step-number { font-family:Georgia,serif; font-style:italic; font-size:24px; color:var(--brew-gold); }
+.brew-step-copy .eyebrow { font-size:8px; letter-spacing:1.7px; }
+.brew-step-copy h2 { font-size:clamp(32px,3.5vw,47px); letter-spacing:2px; line-height:1.55; margin-top:18px; }
+.brew-description { font-size:14px; color:var(--muted); line-height:2.1; margin-top:23px; max-width:330px; }
+.brew-detail { border-top:1px solid var(--line); margin-top:28px; padding-top:16px; font-size:11px; color:var(--green); display:flex; align-items:flex-start; gap:9px; }
+.brew-detail>span { width:4px; height:4px; border-radius:50%; background:var(--green); flex-shrink:0; margin-top:7px; }
+.brew-handwritten { display:block; margin-top:30px; font:italic 15px Georgia,serif; color:var(--muted); }
+.brew-controls { margin:0 5%; border-top:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:15px 0 max(15px,env(safe-area-inset-bottom)); gap:15px; }
+.brew-controls nav { display:flex; gap:25px; }
+.brew-controls button { display:flex; align-items:center; gap:7px; min-height:44px; padding:6px 2px; font-size:12px; color:var(--muted); background:transparent; }
+.brew-controls button[aria-current] { color:var(--green); font-weight:600; }
+.brew-nav-dot { width:5px; height:5px; border-radius:50%; background:var(--line); }
+.brew-controls button[aria-current] .brew-nav-dot { background:var(--green); outline:1px solid var(--green); outline-offset:4px; }
+.brew-nav-number { font:italic 11px Georgia,serif; }
+.brew-scroll-hint { display:flex; gap:7px; align-items:center; font-size:10px; color:var(--muted); }
+.brew-bottom-progress { height:2px; width:100%; background:var(--line); }
+.brew-bottom-progress>span { display:block; height:100%; background:var(--green); transform-origin:left; }
+.brew-static { display:none; }
+.brew-finish { text-align:center; padding-top:85px; padding-bottom:40px; outline:none; }
+.brew-finish>svg { color:var(--green); display:block; margin:0 auto 24px; }
+.brew-finish h2 { font-size:42px; margin:20px 0; letter-spacing:2px; }
+.brew-finish>p:not(.brew-disclaimer) { color:var(--muted); font-size:14px; line-height:2; }
+.brew-finish>.button { margin-top:28px; }
+.brew-replay { display:flex; width:max-content; margin:12px auto 0; }
+.brew-club-note { display:flex; align-items:center; justify-content:center; text-align:left; gap:16px; margin:48px auto 0; padding:23px 26px; background:var(--sage); border-radius:12px; max-width:550px; }
+.brew-club-note>svg { color:var(--green); }
+.brew-club-note strong { font-size:13px; font-weight:500; }
+.brew-club-note p { font-size:12px; color:var(--muted); margin-top:5px; }
+.brew-disclaimer { max-width:580px; margin:25px auto 0; font-size:11px; color:var(--muted); line-height:1.9; }
+.brew-home-link { text-align:center; padding-bottom:40px; }
+@media(max-width:900px) {
+ .brew-stage { padding:0 24px; grid-template-columns:1.15fr 1fr; }
+ .brew-step-copy { padding-left:15px; }
+ .brew-step-copy h2 { font-size:33px; }
+ .brew-controls nav { gap:13px; }
+ .brew-scroll-hint { font-size:9px; }
+}
+@media(max-width:650px) {
+ .brew-intro { padding-top:48px; padding-bottom:45px; }
+ .brew-intro h1 { font-size:43px; letter-spacing:1px; }
+ .brew-intro .eyebrow { font-size:9px; letter-spacing:1.3px; }
+ .brew-intro>p { font-size:12px; }
+ .brew-intro-side { display:none; }
+ .brew-scroll { height:480svh; }
+ .brew-sticky { min-height:620px; }
+ .brew-topline { margin:0 22px; padding:3px 0; }
+ .brew-topline .text-link { font-size:10px; }
+ .brew-stage { display:flex; flex-direction:column; justify-content:center; padding:0 24px; gap:0; }
+ .brew-art-panel { flex:none; width:100%; height:36svh; min-height:225px; align-self:center; }
+ .brew-scene { height:100%; max-height:none; width:100%; }
+ .brew-scene-label { top:8px; left:0; font-size:6px; letter-spacing:1.5px; }
+ .brew-art-caption { position:absolute; bottom:1px; left:0; width:100%; font-size:9px; margin:0; padding:0; }
+ .brew-leader { display:none; }
+ .brew-step-copy { padding:16px 0 12px; max-width:380px; width:100%; }
+ .brew-step-kicker { gap:12px; }
+ .brew-step-number { font-size:18px; }
+ .brew-step-copy .eyebrow { font-size:7px; letter-spacing:1.3px; }
+ .brew-step-copy h2 { font-size:27px; line-height:1.4; margin-top:8px; letter-spacing:1px; }
+ .brew-step-copy h2>span { display:inline; }
+ .brew-step-copy h2 br { display:none; }
+ .brew-description { font-size:12px; line-height:1.9; margin-top:12px; max-width:none; }
+ .brew-detail { margin-top:14px; padding-top:11px; font-size:10px; }
+ .brew-handwritten { display:none; }
+ .brew-controls { flex-direction:column; gap:0; margin:0 22px; padding-top:5px; padding-bottom:max(9px,env(safe-area-inset-bottom)); }
+ .brew-controls nav { width:100%; justify-content:space-between; gap:5px; }
+ .brew-controls button { font-size:11px; gap:5px; min-width:44px; }
+ .brew-nav-number { display:none; }
+ .brew-scroll-hint { font-size:9px; }
+ .brew-finish { padding-top:58px; }
+ .brew-finish>.eyebrow { font-size:8px; letter-spacing:1px; }
+ .brew-finish h2 { font-size:33px; }
+ .brew-club-note { padding:20px; gap:12px; }
+ .brew-club-note strong { font-size:12px; }
+}
+@media(max-height:650px) and (min-width:651px) {
+ .brew-sticky { min-height:500px; }
+ .brew-step-copy h2 { font-size:30px; }
+ .brew-description { margin-top:12px; font-size:12px; }
+ .brew-handwritten { display:none; }
+ .brew-detail { margin-top:12px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .brew-scroll,.brew-begin,.brew-replay { display:none; }
+ .brew-static { display:block; padding-top:25px; }
+ .brew-static-intro { text-align:center; font-size:12px; color:var(--muted); }
+ .brew-static article { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:35px; border-bottom:1px solid var(--line); padding:30px 0; }
+ .brew-static article .brew-scene { max-height:380px; }
+ .brew-static h2 { font-size:27px; margin:12px 0; }
+ .brew-static article p { font-size:14px; color:var(--muted); line-height:2; }
+ .brew-static article small { display:block; font-size:11px; color:var(--green); margin-top:15px; }
+}
+@media(prefers-reduced-motion:reduce) and (max-width:650px) {
+ .brew-static article { grid-template-columns:1fr; gap:0; }
+ .brew-static article .brew-scene { height:280px; }
+ .brew-static h2 { font-size:25px; }
+}
