@@ -1,0 +1,21 @@
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import * as Icons from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import { questions, scoreAnswers } from '@/lib/coffee';
+import { parseSaved, STORAGE_KEY } from '@/lib/storage';
+import Link from 'next/link';
+const labels={sensory:'跟著味蕾走',scene:'住進一個小日常',personality:'聽聽心裡的聲音'};
+export default function Quiz(){
+ const router=useRouter();const [answers,setAnswers]=useState<(number|null)[]>(Array(16).fill(null));const [step,setStep]=useState(0);const [ready,setReady]=useState(false);const [finished,setFinished]=useState(false);const [busy,setBusy]=useState(false);const [notice,setNotice]=useState('');const heading=useRef<HTMLHeadingElement>(null);const moved=useRef(false);
+ useEffect(()=>{try{const saved=parseSaved(localStorage.getItem(STORAGE_KEY));if(saved){setAnswers(saved.answers);setStep(saved.step);setFinished(saved.completed);}}catch{setNotice('瀏覽器無法保存進度，仍可正常完成這次測驗。');}setReady(true);},[]);
+ useEffect(()=>{if(!ready)return;try{localStorage.setItem(STORAGE_KEY,JSON.stringify({version:1,answers,step,completed:finished}));}catch{setNotice('瀏覽器無法保存進度，仍可正常完成這次測驗。');}},[answers,step,finished,ready]);
+ useEffect(()=>{if(moved.current){heading.current?.focus();window.scrollTo({top:0,behavior:'instant'});}},[step]);
+ function next(){if(answers[step]===null||busy)return;if(step<15){moved.current=true;setStep(step+1);}else{setBusy(true);const result=scoreAnswers(answers as number[]);try{localStorage.setItem(STORAGE_KEY,JSON.stringify({version:1,answers,step,completed:true}));}catch{}router.push(`/result/${result.code}`);}}
+ function restart(){setAnswers(Array(16).fill(null));setStep(0);setFinished(false);setBusy(false);moved.current=true;}
+ if(!ready)return <main id="main" className="quiz-page wrap"><div className="quiz-skeleton" role="status">正在翻開你的風味手帳⋯⋯</div></main>;
+ if(finished)return <main id="main" className="empty-page"><Icons.BookHeart size={44}/><span className="eyebrow">YOUR COFFEE PASSPORT IS READY</span><h1>你的咖啡護照，<br/>已經蓋好章了。</h1><p>再看看上次的小靈魂，或跟著今天的心情重新出發。</p><Link className="button primary" href={`/result/${scoreAnswers(answers as number[]).code}`}>看看我的結果 <Icons.ArrowRight size={17}/></Link><button className="text-link" onClick={restart}>重新測一次</button></main>;
+ const q=questions[step]; const selected=answers[step];
+ return <main id="main" className="quiz-page wrap"><div className="quiz-top"><Link href="/" className="text-link"><Icons.ArrowLeft size={15}/> 暫時回到首頁</Link><span>MY LITTLE COFFEE JOURNEY</span></div><div className="progress-info"><span>小選擇 <strong>{String(step+1).padStart(2,'0')}</strong> / 16</span><span>{labels[q.category]}</span></div><progress value={step+1} max={16} aria-label="測驗進度"/><section className="question" key={step}><span className="eyebrow"><Icons.Sparkles size={14}/> A LITTLE MORE ABOUT YOU</span><h1 ref={heading} tabIndex={-1}>{q.title}</h1><p>{q.subtitle}</p><fieldset className="answer-grid"><legend className="sr-only">{q.title}</legend>{q.options.map((option,index)=>{const Icon=((Icons as unknown as Record<string,LucideIcon>)[option.icon]||Icons.Coffee);return <label className={`answer-option option-${index} ${selected===index?'selected':''}`} key={option.title}><input type="radio" name={`q-${step}`} value={index} checked={selected===index} onChange={()=>setAnswers(prev=>prev.map((a,i)=>i===step?index:a))}/><span className="option-letter">{String.fromCharCode(65+index)}</span><span className="option-illustration"><Icon size={45} strokeWidth={1.2}/><span className="option-spark">✦</span></span><strong>{option.title}</strong><span className="option-detail">{option.detail}</span><span className="option-check">{selected===index?<Icons.Check size={14}/>:null}</span></label>;})}</fieldset></section><div className="quiz-controls"><button className="text-link" disabled={step===0||busy} onClick={()=>{moved.current=true;setStep(step-1);}}><Icons.ArrowLeft size={17}/> 上一題</button><span className="quiz-hint">沒有對錯，選你喜歡的就好。</span><button className="button primary" disabled={selected===null||busy} onClick={next}>{busy?'正在製作護照⋯':step===15?'揭曉我的咖啡人格':'下一個小選擇'}<Icons.ArrowRight size={17}/></button></div><p className="save-note" role="status"><Icons.BookOpen size={13}/>{notice||'進度會自動保存在這個瀏覽器，隨時回來都可以。'}</p></main>;
+}
